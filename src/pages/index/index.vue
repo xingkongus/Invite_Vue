@@ -1,33 +1,30 @@
 <template>
-  <div class="test">
-    <div class="test2">{{motto}}</div>
+  <div class="container">
+    <div class="header"></div>
+    <div class="content"></div>
+    <foot></foot>
   </div>
 </template>
 
-<script>
-
+<script>import foot from '@/components/footer'
 export default {
   data () {
     return {
-      motto: 'Hello World',
       userInfo: {}
     }
-  },
-
-  components: {
   },
 
   methods: {
   },
 
   created () {
+  },
+  components: {
+    foot
   }
 }
 </script>
 
 <style lang="stylus">
-  .test
-      font-size 70rpx
-      .test2
-        font-size 30rpx
+
 </style>

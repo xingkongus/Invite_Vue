@@ -12,8 +12,10 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 200rpx 0;
+  padding: 115rpx 45rpx;
   box-sizing: border-box;
+  background-size: cover;
+  background-image: url('https://icharle-1251944239.cosgz.myqcloud.com/xingkong/bg.png');
 }
 /* this rule will be remove */
 * {
