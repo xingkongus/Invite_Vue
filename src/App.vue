@@ -12,8 +12,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 115rpx 45rpx;
-  box-sizing: border-box;
+  padding: 57.5px 0;
   background-size: cover;
   background-image: url('https://icharle-1251944239.cosgz.myqcloud.com/xingkong/bg.png');
 }

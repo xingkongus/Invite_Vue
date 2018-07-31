@@ -1,12 +1,15 @@
 <template>
   <div class="container">
-    <div class="header"></div>
+    <headers></headers>
     <div class="content"></div>
-    <foot></foot>
+    <footers></footers>
   </div>
 </template>
 
-<script>import foot from '@/components/footer'
+<script type="text/ecmascript-6">
+import headers from '@/components/header'
+import footers from '@/components/footer'
+
 export default {
   data () {
     return {
@@ -20,11 +23,12 @@ export default {
   created () {
   },
   components: {
-    foot
+    headers,
+    footers
   }
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" rel="stylesheet/stylus">
 
 </style>

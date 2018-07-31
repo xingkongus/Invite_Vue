@@ -2,7 +2,7 @@
   <div class="footer">星空学生创新中心丨Copyright©{{year}}</div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
   export default {
     computed: {
       // 动态计算当前年份
@@ -13,8 +13,8 @@
   }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" rel="stylesheet/stylus">
   .footer
     color #aaa
-    font-size 24rpx
+    font-size 12px
 </style>
