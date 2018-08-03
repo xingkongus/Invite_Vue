@@ -8,6 +8,8 @@
       <place></place>
       <!--邀请到朋友-->
       <partner></partner>
+      <!--留言板块-->
+      <comment></comment>
     </div>
     <!--星空版权声明-->
     <footers></footers>
@@ -19,6 +21,7 @@ import headers from '@/components/header'
 import footers from '@/components/footer'
 import place from '@/components/place'
 import partner from '@/components/partner'
+import comment from '@/components/comment'
 
 export default {
   data () {
@@ -36,11 +39,11 @@ export default {
     headers,
     footers,
     place,
-    partner
+    partner,
+    comment
   }
 }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-
 </style>
