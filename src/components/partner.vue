@@ -10,6 +10,7 @@
       <img class="partner_avatar" src="https://wx.qlogo.cn/mmopen/vi_32/QtOO2flJAnibpc2lGnGuiaicyKHibIaqUya2ohrArJKicLpgPuPK2Mez8jbqibnKibL1O7hTyYicHoDD6bywpkwHxMCBNQ/132" >
       <img class="partner_avatar" src="https://wx.qlogo.cn/mmopen/vi_32/QtOO2flJAnibpc2lGnGuiaicyKHibIaqUya2ohrArJKicLpgPuPK2Mez8jbqibnKibL1O7hTyYicHoDD6bywpkwHxMCBNQ/132" >
     </div>
+    <div class="partner_join">我要去</div>
   </div>
 </template>
 
@@ -57,4 +58,14 @@
           width 65px
           height 65px
           border-radius 50%
+      .partner_join
+        width 80%
+        height 62.5px
+        line-height 62.5px
+        margin 50px auto 0
+        border-radius 50px
+        background-color #02d1d3
+        color #fff
+        font-size 21px
+        font-weight bold
 </style>
