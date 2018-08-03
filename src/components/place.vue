@@ -12,15 +12,21 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
   .content
+    width 100%
+    height auto
     .place
+      width 90%
+      margin 0 auto
       position relative
       .place_img
+        width 100%
         border-radius 5px
       .place_content
         position absolute
+        padding-left 6%
+        width 90%
         top 25px
         left 0
-        margin 0 5%
-        color #50
+        color #505050
         font-size 19px
 </style>
