@@ -10,6 +10,8 @@
       <partner></partner>
       <!--留言板块-->
       <comment></comment>
+      <!--创建自己邀请函-->
+      <owner></owner>
     </div>
     <!--星空版权声明-->
     <footers></footers>
@@ -22,6 +24,7 @@ import footers from '@/components/footer'
 import place from '@/components/place'
 import partner from '@/components/partner'
 import comment from '@/components/comment'
+import owner from '@/components/owner'
 
 export default {
   data () {
@@ -40,10 +43,12 @@ export default {
     footers,
     place,
     partner,
-    comment
+    comment,
+    owner
   }
 }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+
 </style>
