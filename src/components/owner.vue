@@ -1,9 +1,14 @@
 <template>
-  <button class="create_owner">制作我的邀请函</button>
+  <button class="create_owner" open-type="getUserInfo" @getuserinfo="getUserInfoCallBack">制作我的邀请函</button>
 </template>
 
 <script type="text/ecmascript-6">
   export default {
+    methods: {
+      getUserInfoCallBack (e) {
+        console.log(e)
+      }
+    }
   }
 </script>
 
