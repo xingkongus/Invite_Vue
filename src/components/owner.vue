@@ -3,10 +3,12 @@
 </template>
 
 <script type="text/ecmascript-6">
-  export default {
+  import { utils } from '@/utils/index'
+export default {
     methods: {
       getUserInfoCallBack (e) {
-        console.log(e)
+        let data = e.mp.detail
+        utils.wx_userinfo(data.iv, data.encryptedData)
       }
     }
   }

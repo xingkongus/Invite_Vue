@@ -5,9 +5,8 @@ export default {
       wx.login({
         success: (res) => {
           if (res.code) {
+            console.log(res.code)
             resolve(res.code)
-          } else {
-            reject(false)
           }
         }
       })
@@ -19,14 +18,14 @@ export default {
         .get_code()
         .then((res) => {
           http
-            .post('xxxxx', {
+            .post('login', {
               code: res,
               iv: iv,
               encryptedData: encryptedData
             })
             .then(res => {
-              if (res.data.token) {
-                console.log(res.data.token)
+              if (res) {
+                console.log(res)
               }
               resolve(res)
             })
@@ -45,8 +44,6 @@ export default {
         success: (res) => {
           if (res.code) {
             resolve(res.code)
-          } else {
-            reject(false)
           }
         }
       })

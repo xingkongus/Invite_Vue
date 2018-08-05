@@ -1,4 +1,4 @@
-const API_HOST = 'https://invite.test/api/'
+const API_HOST = 'http://invite.test/api/'
 const header = {
   'Accept': 'application/json',
   'content-type': 'application/json'
