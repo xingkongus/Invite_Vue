@@ -12,10 +12,8 @@ export default {
         data: data,
         header: header,
         success: (res) => {
-          if (res.data.code === 200) {
+          if (res.data.status === 200) {
             resolve(res.data)
-          } else {
-            reject(res)
           }
         },
         fail: (error) => {

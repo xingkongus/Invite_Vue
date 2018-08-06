@@ -9,6 +9,8 @@ export default {
       getUserInfoCallBack (e) {
         let data = e.mp.detail
         utils.wx_userinfo(data.iv, data.encryptedData)
+          .then(res => {
+          })
       }
     }
   }

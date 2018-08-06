@@ -5,7 +5,6 @@ export default {
       wx.login({
         success: (res) => {
           if (res.code) {
-            console.log(res.code)
             resolve(res.code)
           }
         }
@@ -24,9 +23,7 @@ export default {
               encryptedData: encryptedData
             })
             .then(res => {
-              if (res) {
-                console.log(res)
-              }
+              console.log(res)
               resolve(res)
             })
             .catch(error => {
