@@ -7,13 +7,17 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import store from '@/utils/store'
   export default {
     data () {
       return {
-        userInfo: {}
       }
     },
-    props: ['userInfo'],
+    computed: {
+      userInfo () {
+        return store.state.userInfo
+      }
+    },
     mounted () {
     }
   }

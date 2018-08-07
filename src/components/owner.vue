@@ -4,6 +4,7 @@
 
 <script type="text/ecmascript-6">
   import { utils } from '@/utils/index'
+  import store from '@/utils/store'
 export default {
     methods: {
       getUserInfoCallBack (e) {
@@ -11,6 +12,9 @@ export default {
         utils.wx_userinfo(data.iv, data.encryptedData)
           .then(res => {
             wx.setStorageSync('userInfo', res)
+            store.commit('setUser', {
+              userInfo: res
+            })
           })
       }
     }
