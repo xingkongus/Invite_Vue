@@ -23,7 +23,6 @@ export default {
               encryptedData: encryptedData
             })
             .then(res => {
-              console.log(res)
               resolve(res)
             })
             .catch(error => {

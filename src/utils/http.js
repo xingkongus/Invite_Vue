@@ -14,6 +14,8 @@ export default {
         success: (res) => {
           if (res.data.status === 200) {
             resolve(res.data)
+          } else {
+            reject(new Error())
           }
         },
         fail: (error) => {

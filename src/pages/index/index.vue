@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <!--头部头像昵称-->
-    <headers></headers>
+    <headers :userInfo="userInfo"></headers>
     <!--中间内容部分-->
     <div class="content">
       <!--拍照地点及内容-->
@@ -11,7 +11,8 @@
       <!--留言板块-->
       <comment></comment>
       <!--创建自己邀请函-->
-      <owner></owner>
+      <!--<owner></owner>-->
+      <button class="create_owner" open-type="getUserInfo" @getuserinfo="getUserInfoCallBack">制作我的邀请函</button>
     </div>
     <!--星空版权声明-->
     <footers></footers>
@@ -24,7 +25,7 @@ import footers from '@/components/footer'
 import place from '@/components/place'
 import partner from '@/components/partner'
 import comment from '@/components/comment'
-import owner from '@/components/owner'
+import { utils } from '@/utils/index'
 
 export default {
   data () {
@@ -34,6 +35,14 @@ export default {
   },
 
   methods: {
+    getUserInfoCallBack (e) {
+      let data = e.mp.detail
+      utils.wx_userinfo(data.iv, data.encryptedData)
+        .then(res => {
+          wx.setStorageSync('userInfo', res)
+          this.userInfo = res
+        })
+    }
   },
 
   created () {
@@ -43,12 +52,20 @@ export default {
     footers,
     place,
     partner,
-    comment,
-    owner
+    comment
   }
 }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-
+  .content
+    .create_owner
+      margin 35px auto 30px auto
+      width 80%
+      height 67.5px
+      background-color #fcff25
+      line-height 67.5px
+      color #ff8400
+      font-size 22.5px
+      font-weight bold
 </style>

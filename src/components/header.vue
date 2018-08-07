@@ -1,13 +1,21 @@
 <template>
   <div class="header">
-    <img class="userinfo_avatar" src="https://wx.qlogo.cn/mmopen/vi_32/QtOO2flJAnibpc2lGnGuiaicyKHibIaqUya2ohrArJKicLpgPuPK2Mez8jbqibnKibL1O7hTyYicHoDD6bywpkwHxMCBNQ/132"  >
-    <p class="userinfo_nickname">听说名字很长</p>
+    <img class="userinfo_avatar" :src="userInfo.avatarUrl">
+    <p class="userinfo_nickname">{{userInfo.nickName}}</p>
     <p class="title">的邀请函</p>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   export default {
+    data () {
+      return {
+        userInfo: {}
+      }
+    },
+    props: ['userInfo'],
+    mounted () {
+    }
   }
 </script>
 
