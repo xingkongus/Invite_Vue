@@ -25,6 +25,7 @@ import place from '@/components/place'
 import partner from '@/components/partner'
 import comment from '@/components/comment'
 import owner from '@/components/owner'
+import store from '@/utils/store'
 
 export default {
   data () {
@@ -37,6 +38,12 @@ export default {
   },
 
   created () {
+    let userInfo = wx.getStorageSync('userInfo')
+    if (userInfo) {
+      store.commit('setUser', {
+        userInfo: userInfo
+      })
+    }
   },
   components: {
     headers,

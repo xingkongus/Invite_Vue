@@ -7,12 +7,6 @@
   import store from '@/utils/store'
 export default {
     created () {
-      let userInfo = wx.getStorageSync('userInfo')
-      if (userInfo) {
-        store.commit('setUser', {
-          userInfo: userInfo
-        })
-      }
     },
     methods: {
       getUserInfoCallBack (e) {
