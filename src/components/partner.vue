@@ -10,12 +10,29 @@
       <img class="partner_avatar" src="https://wx.qlogo.cn/mmopen/vi_32/QtOO2flJAnibpc2lGnGuiaicyKHibIaqUya2ohrArJKicLpgPuPK2Mez8jbqibnKibL1O7hTyYicHoDD6bywpkwHxMCBNQ/132" >
       <img class="partner_avatar" src="https://wx.qlogo.cn/mmopen/vi_32/QtOO2flJAnibpc2lGnGuiaicyKHibIaqUya2ohrArJKicLpgPuPK2Mez8jbqibnKibL1O7hTyYicHoDD6bywpkwHxMCBNQ/132" >
     </div>
-    <div class="partner_join">我要去</div>
+    <button class="partner_join" open-type="getUserInfo" @getuserinfo="getUserInfoCallBack">我要去</button>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import { utils } from '@/utils/index'
+  import store from '@/utils/store'
   export default {
+    methods: {
+      getUserInfoCallBack (e) {
+        let data = e.mp.detail
+        let userInfo = wx.getStorageSync('userInfo')
+        // 未登录情况才执行
+        if (!userInfo) {
+          utils.wx_userinfo(data.iv, data.encryptedData)
+            .then(res => {
+              store.commit('setUser', { // 通知vuex改变状态
+                userInfo: res
+              })
+            })
+        }
+      }
+    }
   }
 </script>
 

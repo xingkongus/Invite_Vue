@@ -6,16 +6,27 @@
   import { utils } from '@/utils/index'
   import store from '@/utils/store'
 export default {
+    created () {
+      let userInfo = wx.getStorageSync('userInfo')
+      if (userInfo) {
+        store.commit('setUser', {
+          userInfo: userInfo
+        })
+      }
+    },
     methods: {
       getUserInfoCallBack (e) {
         let data = e.mp.detail
-        utils.wx_userinfo(data.iv, data.encryptedData)
-          .then(res => {
-            wx.setStorageSync('userInfo', res)
-            store.commit('setUser', {
-              userInfo: res
+        let userInfo = wx.getStorageSync('userInfo')
+        // 未登录情况才执行
+        if (!userInfo) {
+          utils.wx_userinfo(data.iv, data.encryptedData)
+            .then(res => {
+              store.commit('setUser', { // 通知vuex改变状态
+                userInfo: res
+              })
             })
-          })
+        }
       }
     }
   }

@@ -16,13 +16,30 @@
     </scroll-view>
     <div class="comment_send">
       <textarea placeholder="给朋友留言的地方~点击我点击我！" class="comment_text"></textarea>
-      <button class="comment_button">留言</button>
+      <button class="comment_button" open-type="getUserInfo" @getuserinfo="getUserInfoCallBack">留言</button>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import { utils } from '@/utils/index'
+  import store from '@/utils/store'
   export default {
+    methods: {
+      getUserInfoCallBack (e) {
+        let data = e.mp.detail
+        let userInfo = wx.getStorageSync('userInfo')
+        // 未登录情况才执行
+        if (!userInfo) {
+          utils.wx_userinfo(data.iv, data.encryptedData)
+            .then(res => {
+              store.commit('setUser', { // 通知vuex改变状态
+                userInfo: res
+              })
+            })
+        }
+      }
+    }
   }
 </script>
 
