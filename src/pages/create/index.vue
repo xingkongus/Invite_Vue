@@ -41,10 +41,12 @@
   import footers from '@/components/footer'
   import place from '@/components/place'
   import store from '@/utils/store'
+  import { utils, http } from '@/utils/index'
   export default {
     data () {
       return {
         flag: true, // 预览、重做按钮
+        userInfo: {},
         placeinfo: { // 默认地点以及文案
           pic: '/static/administrate.png',
           text: '大家好，我是xxx,明天我要在行政楼在拍毕业照啦，快来和我一起拍照留念吧，我的电话是xxxx，诚望百忙之中拨冗赏光，吾辈荣幸之至~'
@@ -54,6 +56,7 @@
     created () {
       let userInfo = wx.getStorageSync('userInfo')
       if (userInfo) {
+        this.userInfo = userInfo
         store.commit('setUser', {
           userInfo: userInfo
         })
@@ -86,7 +89,20 @@
       },
       // 完成按钮
       submit () {
-        console.log(this.placeinfo.text)
+        let content = this.placeinfo.text
+        let pic = this.placeinfo.pic
+        utils.showLoading('制作中...') // 网络延迟提示信息
+        http.post('SetInvite', {openId_id: this.userInfo.openId, content: content, pic: pic})
+          .then(result => {
+            console.log(result)
+            utils.hideLoading() // 隐藏提示信息
+            utils.toast('制作完成')
+          })
+          .catch(error => {
+            utils.hideLoading() // 隐藏提示信息
+            utils.toast('制作失败')
+            console.log(error)
+          })
       }
     },
     components: {
