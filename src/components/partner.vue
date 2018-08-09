@@ -14,6 +14,11 @@
   import { utils } from '@/utils/index'
   import store from '@/utils/store'
   export default {
+    data () {
+      return {
+        userInfo: {}
+      }
+    },
     props: ['partnerinfo'],
     methods: {
       getUserInfoCallBack (e) {
@@ -28,10 +33,26 @@
               })
             })
         }
+        this.userInfo = userInfo
+        // 添加前端限制允许一个用户只参与一次
+        let ispartner = true
+        for (let i = 0; i < this.partnernum; i++) {
+          if (this.partnerinfo[i].avatar === this.userInfo.avatarUrl) {
+            ispartner = false
+          }
+        }
+        // 若还未参加则加入 否则提示已经参加
+        if (ispartner) {
+          let obj = {avatar: this.userInfo.avatarUrl}
+          this.partnerinfo.push(obj)
+          utils.toast('报名成功！')
+        } else {
+          utils.toast('您已报名！')
+        }
       }
     },
     computed: {
-      partnernum () {
+      partnernum () { // 计算数组长度
         return this.partnerinfo.length
       }
     }
