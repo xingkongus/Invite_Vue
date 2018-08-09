@@ -2,16 +2,16 @@
   <div class="comment">
     <div class="comment_title">朋友留言</div>
     <scroll-view scroll-y class="comment_detail">
-      <div class="comment_user">
+      <div class="comment_user" v-for="item in commentinfo" :key="item.id">
         <div class="user_detail">
-          <img class="user_avatar" src="https://wx.qlogo.cn/mmopen/vi_32/QtOO2flJAnibpc2lGnGuiaicyKHibIaqUya2ohrArJKicLpgPuPK2Mez8jbqibnKibL1O7hTyYicHoDD6bywpkwHxMCBNQ/132" >
-          <div class="user_name">Icharle</div>
+          <img class="user_avatar" :src="item.avatar" >
+          <div class="user_name">{{item.nickname}}</div>
           <div class="praise">
-            <div class="ispraise"></div>
-            <div class="praise_num">300</div>
+            <div class="ispraise" :class="[ item.IsLikeflag ? 'pass' : 'loser']"></div>
+            <div class="praise_num">{{item.goodnum}}</div>
           </div>
         </div>
-        <div class="user_content">我是第一空间给人家的快感和风华绝代双方和解我发给瑞关键时刻分工会开始放寒假开完会条留言</div>
+        <div class="user_content">{{item.content}}</div>
       </div>
     </scroll-view>
     <div class="comment_send">
@@ -25,6 +25,7 @@
   import { utils } from '@/utils/index'
   import store from '@/utils/store'
   export default {
+    props: ['commentinfo'],
     methods: {
       getUserInfoCallBack (e) {
         let data = e.mp.detail
@@ -92,7 +93,10 @@
                 background-size 100% auto
                 background-repeat no-repeat
                 background-position center
-                background-image url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAApCAYAAABOScuyAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAAAshJREFUWIXV2U+oFVUcwPHPG8RdJYGtw8QMhUdKEf072kYIlUSUEhJ3bRIpoaKCxyySRClRV+0khUe8Rf5PosWtFqIS8spFilKCFaK+IsKeEq/FeQ/Hy525M/eNb7zf3Zxz5jdf5p575vc7Z2Bi+XIFLMMKDGI+5k62/4qfcQYnMFoUJMNjk/GewROYh1m4jkv4Cd+kIRzOCzCQI/wUPsHzJUWGsQVXc/pnYyc2l4x3DlvTEE60dyQdBr+LU8rLwqu4gFUd+p4Uf42ysrAIXw21WnvaO9qF38fHFQJneRCHsCHT9qI4bR7tMeabQ63WZ9mG7JRYi5EeA7cziCu4VlO8D9IQtnFH+CH8WVNw+Bs38UiNMRekIVyYmhIf1hgYHlCvLOwmvuE54rLS6Q94v7EowWr9IQvrEjzXtEUFnk2wtGmLCixM8HjTFhV4ONE/8xcGEkw0bVGBiX57w0kiJi39wlgiJif9wvkEp5u2qMDpBMeatqjA0QSXcaRpkxJcTEP4dmqF2NmoSjk+4s6S1hLLmPuVcRzg7jV4YzMupXgjDeEWdwufwhfN+BQymoawb+qi/Su3Abdm1qcrL2cv2oX/w8qZc+nK5jSEK9mGTnnE19g+Mz6FfJmGsLe9MS/xeQ8H761PIaNpCGs6dRRlaq/g5L3xKeQyXsrr7JZaLhM36WaKfxDSEK7nDegmPI4luFinVQ7/Ymkawi9Fg8ok73+Ju5nnapDK4waeTkPo+rUtW22MidX1D9OxyuE38c3+WGZwlfJoXJSuM7M7i8XdpkGWXuq5VdjVw33tjGBJGsJYlZt6LUDfwts93kvc3V+nh4p9OhXzp3hBnN9VeA1be33odEv878Xt/eMlxp4VN7qHp/PAOvYkfhczqh0FY/aLZx1lT5tyqXMT5R3xTOOPTNttrMfrdT1kVl2BJvlOPH/7HHOwSc1fyf8BvNiJl3/0RuMAAAAASUVORK5CYII=")
+                &.pass
+                  background-image url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAApCAYAAABOScuyAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAAAshJREFUWIXV2U+oFVUcwPHPG8RdJYGtw8QMhUdKEf072kYIlUSUEhJ3bRIpoaKCxyySRClRV+0khUe8Rf5PosWtFqIS8spFilKCFaK+IsKeEq/FeQ/Hy525M/eNb7zf3Zxz5jdf5p575vc7Z2Bi+XIFLMMKDGI+5k62/4qfcQYnMFoUJMNjk/GewROYh1m4jkv4Cd+kIRzOCzCQI/wUPsHzJUWGsQVXc/pnYyc2l4x3DlvTEE60dyQdBr+LU8rLwqu4gFUd+p4Uf42ysrAIXw21WnvaO9qF38fHFQJneRCHsCHT9qI4bR7tMeabQ63WZ9mG7JRYi5EeA7cziCu4VlO8D9IQtnFH+CH8WVNw+Bs38UiNMRekIVyYmhIf1hgYHlCvLOwmvuE54rLS6Q94v7EowWr9IQvrEjzXtEUFnk2wtGmLCixM8HjTFhV4ONE/8xcGEkw0bVGBiX57w0kiJi39wlgiJif9wvkEp5u2qMDpBMeatqjA0QSXcaRpkxJcTEP4dmqF2NmoSjk+4s6S1hLLmPuVcRzg7jV4YzMupXgjDeEWdwufwhfN+BQymoawb+qi/Su3Abdm1qcrL2cv2oX/w8qZc+nK5jSEK9mGTnnE19g+Mz6FfJmGsLe9MS/xeQ8H761PIaNpCGs6dRRlaq/g5L3xKeQyXsrr7JZaLhM36WaKfxDSEK7nDegmPI4luFinVQ7/Ymkawi9Fg8ok73+Ju5nnapDK4waeTkPo+rUtW22MidX1D9OxyuE38c3+WGZwlfJoXJSuM7M7i8XdpkGWXuq5VdjVw33tjGBJGsJYlZt6LUDfwts93kvc3V+nh4p9OhXzp3hBnN9VeA1be33odEv878Xt/eMlxp4VN7qHp/PAOvYkfhczqh0FY/aLZx1lT5tyqXMT5R3xTOOPTNttrMfrdT1kVl2BJvlOPH/7HHOwSc1fyf8BvNiJl3/0RuMAAAAASUVORK5CYII=")
+                &.loser
+                  background-image url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAApCAYAAABOScuyAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAAAsVJREFUWIXV2U+oFVUcwPHPG6SdJYWtpYxqjCKliNKSNkFkGGGUULQJN0mUUCFtHxRKRbVqFynIw0WlVhItLBeiEfLMH2QoJfSHwB4tBJ8Rtjjv4Xi5M3fm3vFO97ubc8785svM4czvd87UzMyMCtbjEdyFlVi+0P4LfsR3OIjZqiAFbl6Idx9ux01YgnM4gx/wdUTsKwswVSJ8D97G2poie/AS/izpvwY7sbVmvJPYFhEHezuyPoNfw1H1ZeFp/IQNffrulr5GXVlYhS/zPH+/t6NXeDvebBC4yLX4DJsLbQ9K02bFkDFfzPP8w2JDUfhJTA8ZuMhu3IkbcEj/r9iEF/I83754sRjsOuwdMXCRw4gW403neX4Ll4XfaDE4LMWNLcd8j7RKLJOWlVE/3ThYleFxkyELmzI80LVFA+7PsKZriwbcluHWri0acH1mcuYvTGW41LVFAy5N2hvOMilpmRTmMik5mRROZTjWtUUDjmX4vGuLBhzIcBb7uzapwemI+GZxhdjZqUo9prm8pB2Sypj/K/NSYXDFGvxcNy612BIRF7lS+Cgqa/6OmI2IjxYvev9ym3FxvD4DebR40Sv8Lx4bn8tAtkbEr8WGfnnEV3hrPD6VfBIRH/Q2liU+r+PTq+tTyWxEPNGvoypT24gjV8enkrN4uKxzUGq5XtqkGxfn8VBEnCsbMEh4Hqtxuk2rEi5gTUT8XDWoTvL+t7SbebIFqTL+wr0RMfBvW7famJOq6+9HsSrhN+nNnqgzuEl5NC9Jt5nZHccdg6ZBkWHquQ14d4j7etmL1REx1+SmYQvQl/HKkPeSdvc3GaJiH6VifgfrpPndhGewbdiHjlriH5a297+oMfa4dLizZ5QHtrEn8buUUe2oGLNLOuuoe9pUSpubKK9KZxp/FNr+wVN4tq2HLGkr0ALfSudvH2MZntfyX/I/jT2Xj9ciGMYAAAAASUVORK5CYII=")
               .praise_num
                 display inline-block
                 color #505050

@@ -1,14 +1,10 @@
 <template>
   <div class="partner">
     <div class="partner_title">已邀请到</div>
-    <div class="partner_num">14</div>
+    <div class="partner_num">{{partnernum}}</div>
     <div class="partner_people">人</div>
     <div class="partner_detail">
-      <img class="partner_avatar" src="https://wx.qlogo.cn/mmopen/vi_32/QtOO2flJAnibpc2lGnGuiaicyKHibIaqUya2ohrArJKicLpgPuPK2Mez8jbqibnKibL1O7hTyYicHoDD6bywpkwHxMCBNQ/132" >
-      <img class="partner_avatar" src="https://wx.qlogo.cn/mmopen/vi_32/QtOO2flJAnibpc2lGnGuiaicyKHibIaqUya2ohrArJKicLpgPuPK2Mez8jbqibnKibL1O7hTyYicHoDD6bywpkwHxMCBNQ/132" >
-      <img class="partner_avatar" src="https://wx.qlogo.cn/mmopen/vi_32/QtOO2flJAnibpc2lGnGuiaicyKHibIaqUya2ohrArJKicLpgPuPK2Mez8jbqibnKibL1O7hTyYicHoDD6bywpkwHxMCBNQ/132" >
-      <img class="partner_avatar" src="https://wx.qlogo.cn/mmopen/vi_32/QtOO2flJAnibpc2lGnGuiaicyKHibIaqUya2ohrArJKicLpgPuPK2Mez8jbqibnKibL1O7hTyYicHoDD6bywpkwHxMCBNQ/132" >
-      <img class="partner_avatar" src="https://wx.qlogo.cn/mmopen/vi_32/QtOO2flJAnibpc2lGnGuiaicyKHibIaqUya2ohrArJKicLpgPuPK2Mez8jbqibnKibL1O7hTyYicHoDD6bywpkwHxMCBNQ/132" >
+      <img class="partner_avatar" v-for="item in partnerinfo" :src="item.avatar" :key="item.id">
     </div>
     <button class="partner_join" open-type="getUserInfo" @getuserinfo="getUserInfoCallBack">我要去</button>
   </div>
@@ -18,6 +14,7 @@
   import { utils } from '@/utils/index'
   import store from '@/utils/store'
   export default {
+    props: ['partnerinfo'],
     methods: {
       getUserInfoCallBack (e) {
         let data = e.mp.detail
@@ -31,6 +28,11 @@
               })
             })
         }
+      }
+    },
+    computed: {
+      partnernum () {
+        return this.partnerinfo.length
       }
     }
   }

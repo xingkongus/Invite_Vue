@@ -5,11 +5,11 @@
     <!--中间内容部分-->
     <div class="content">
       <!--拍照地点及内容-->
-      <place></place>
+      <place :placeinfo="placeinfo"></place>
       <!--邀请到朋友-->
-      <partner></partner>
+      <partner :partnerinfo="partnerinfo"></partner>
       <!--留言板块-->
-      <comment></comment>
+      <comment :commentinfo="commentinfo"></comment>
       <!--创建自己邀请函-->
       <owner></owner>
     </div>
@@ -26,11 +26,15 @@ import partner from '@/components/partner'
 import comment from '@/components/comment'
 import owner from '@/components/owner'
 import store from '@/utils/store'
+import { http } from '@/utils/index'
 
 export default {
   data () {
     return {
-      userInfo: {}
+      userInfo: {},
+      placeinfo: {},
+      partnerinfo: {},
+      commentinfo: {}
     }
   },
 
@@ -40,10 +44,21 @@ export default {
   created () {
     let userInfo = wx.getStorageSync('userInfo')
     if (userInfo) {
+      this.userInfo = userInfo
       store.commit('setUser', {
         userInfo: userInfo
       })
     }
+  },
+  mounted () {
+    http.post('BackInfo', {openid: this.userInfo.openId})
+      .then(result => {
+        this.placeinfo.pic = result.siteImg
+        this.placeinfo.text = result.invitewords
+        this.partnerinfo = result.acceptedAvators
+        this.commentinfo = result.message
+        console.log(result)
+      })
   },
   components: {
     headers,
