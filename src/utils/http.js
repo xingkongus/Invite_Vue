@@ -2,7 +2,7 @@ const API_HOST = 'http://invite.test/api/'
 const header = {
   'Accept': 'application/json',
   'content-type': 'application/json',
-  'Authorization': 'bearer ' + wx.getStorageSync('token')
+  'Authorization': wx.getStorageSync('token')
 }
 export default {
   request (method, url, data) {
@@ -13,6 +13,9 @@ export default {
         data: data,
         header: header,
         success: (res) => {
+          if (res.header.Authorization) {
+            wx.setStorageSync('token', res.header.Authorization)
+          }
           if (res.statusCode === 200) {
             resolve(res.data)
           } else {
