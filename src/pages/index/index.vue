@@ -7,9 +7,9 @@
       <!--拍照地点及内容-->
       <place :placeinfo="placeinfo"></place>
       <!--邀请到朋友-->
-      <partner :partnerinfo="partnerinfo"></partner>
+      <partner :partnerinfo="partnerinfo" :inviteid="inviteid"></partner>
       <!--留言板块-->
-      <comment :commentinfo="commentinfo"></comment>
+      <comment :commentinfo="commentinfo" :inviteid="inviteid"></comment>
       <!--创建自己邀请函-->
       <owner></owner>
     </div>
@@ -31,10 +31,11 @@ import { http } from '@/utils/index'
 export default {
   data () {
     return {
-      userInfo: {},
-      placeinfo: {},
-      partnerinfo: {},
-      commentinfo: {}
+      userInfo: {}, // 用户个人信息
+      placeinfo: {}, // 选择地方及文案
+      partnerinfo: {}, // 参与者
+      commentinfo: {}, // 评论
+      inviteid: 0 // 邀请函ID值
     }
   },
 
@@ -57,6 +58,7 @@ export default {
         this.placeinfo.text = result.invitewords
         this.partnerinfo = result.acceptedAvators
         this.commentinfo = result.message
+        this.inviteid = result.inviteID
         console.log(result)
       })
   },
@@ -72,14 +74,4 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  .content
-    .create_owner
-      margin 35px auto 30px auto
-      width 80%
-      height 67.5px
-      background-color #fcff25
-      line-height 67.5px
-      color #ff8400
-      font-size 22.5px
-      font-weight bold
 </style>

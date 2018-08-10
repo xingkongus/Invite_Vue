@@ -11,7 +11,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { utils } from '@/utils/index'
+  import { http, utils } from '@/utils/index'
   import store from '@/utils/store'
   export default {
     data () {
@@ -19,7 +19,7 @@
         userInfo: {}
       }
     },
-    props: ['partnerinfo'],
+    props: ['partnerinfo', 'inviteid'],
     methods: {
       getUserInfoCallBack (e) {
         let data = e.mp.detail
@@ -45,6 +45,10 @@
         if (ispartner) {
           let obj = {avatar: this.userInfo.avatarUrl}
           this.partnerinfo.push(obj)
+          http.post('SetPartner', {invite_id: this.inviteid, openId_id: this.userInfo.openId})
+            .then(result => {
+              console.log(result)
+            })
           utils.toast('报名成功！')
         } else {
           utils.toast('您已报名！')

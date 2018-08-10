@@ -22,7 +22,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { utils } from '@/utils/index'
+  import { http, utils } from '@/utils/index'
   import store from '@/utils/store'
   export default {
     data () {
@@ -31,7 +31,7 @@
         text: '' // 评论输入框内容
       }
     },
-    props: ['commentinfo'],
+    props: ['commentinfo', 'inviteid'],
     methods: {
       getUserInfoCallBack (e) {
         let data = e.mp.detail
@@ -45,25 +45,33 @@
               })
             })
         }
-        this.userInfo = userInfo
+        this.userInfo = wx.getStorageSync('userInfo')
         let tempmessage = {
           'avatar': this.userInfo.avatarUrl,
           'nickname': this.userInfo.nickName,
           'content': this.text,
-          'goodnum': '0',
+          'goodnum': 0,
           'IsLikeflag': false
         }
         this.commentinfo.push(tempmessage)
-        console.log(this.commentinfo)
+        http.post('SetComment', {invite_id: this.inviteid, openId_id: this.userInfo.openId, content: this.text})
+          .then(result => {
+            console.log(result)
+          })
         this.text = ''
       },
       // 点赞 (index为数组索引值  id为点击评论的id号)
       addlike (index, id) {
+        this.userInfo = wx.getStorageSync('userInfo')
         if (this.commentinfo.filter(v => v.id === id && v.IsLikeflag).length) { // 判断是否已经点赞(采用filter过滤器)
           utils.toast('您已点赞！')
         } else {
           this.commentinfo[index].IsLikeflag = true
           this.commentinfo[index].goodnum += 1
+          http.post('SetLike', {comment_id: id, openId_id: this.userInfo.openId})
+            .then(result => {
+              console.log(result)
+            })
         }
       }
     }
@@ -125,6 +133,7 @@
                   background-image url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAApCAYAAABOScuyAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAAAsVJREFUWIXV2U+oFVUcwPHPG6SdJYWtpYxqjCKliNKSNkFkGGGUULQJN0mUUCFtHxRKRbVqFynIw0WlVhItLBeiEfLMH2QoJfSHwB4tBJ8Rtjjv4Xi5M3fm3vFO97ubc8785svM4czvd87UzMyMCtbjEdyFlVi+0P4LfsR3OIjZqiAFbl6Idx9ux01YgnM4gx/wdUTsKwswVSJ8D97G2poie/AS/izpvwY7sbVmvJPYFhEHezuyPoNfw1H1ZeFp/IQNffrulr5GXVlYhS/zPH+/t6NXeDvebBC4yLX4DJsLbQ9K02bFkDFfzPP8w2JDUfhJTA8ZuMhu3IkbcEj/r9iEF/I83754sRjsOuwdMXCRw4gW403neX4Ll4XfaDE4LMWNLcd8j7RKLJOWlVE/3ThYleFxkyELmzI80LVFA+7PsKZriwbcluHWri0acH1mcuYvTGW41LVFAy5N2hvOMilpmRTmMik5mRROZTjWtUUDjmX4vGuLBhzIcBb7uzapwemI+GZxhdjZqUo9prm8pB2Sypj/K/NSYXDFGvxcNy612BIRF7lS+Cgqa/6OmI2IjxYvev9ym3FxvD4DebR40Sv8Lx4bn8tAtkbEr8WGfnnEV3hrPD6VfBIRH/Q2liU+r+PTq+tTyWxEPNGvoypT24gjV8enkrN4uKxzUGq5XtqkGxfn8VBEnCsbMEh4Hqtxuk2rEi5gTUT8XDWoTvL+t7SbebIFqTL+wr0RMfBvW7famJOq6+9HsSrhN+nNnqgzuEl5NC9Jt5nZHccdg6ZBkWHquQ14d4j7etmL1REx1+SmYQvQl/HKkPeSdvc3GaJiH6VifgfrpPndhGewbdiHjlriH5a297+oMfa4dLizZ5QHtrEn8buUUe2oGLNLOuuoe9pUSpubKK9KZxp/FNr+wVN4tq2HLGkr0ALfSudvH2MZntfyX/I/jT2Xj9ciGMYAAAAASUVORK5CYII=")
               .praise_num
                 display inline-block
+                padding-left 2px
                 color #505050
                 font-size 20px
           .user_content
