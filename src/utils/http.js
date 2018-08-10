@@ -1,7 +1,8 @@
 const API_HOST = 'http://invite.test/api/'
 const header = {
   'Accept': 'application/json',
-  'content-type': 'application/json'
+  'content-type': 'application/json',
+  'Authorization': 'bearer ' + wx.getStorageSync('token')
 }
 export default {
   request (method, url, data) {

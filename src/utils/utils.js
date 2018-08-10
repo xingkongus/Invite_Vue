@@ -29,7 +29,8 @@ export default {
                     encryptedData: encryptedData
                   })
                   .then(res => {
-                    wx.setStorageSync('userInfo', res)
+                    wx.setStorageSync('userInfo', res.userinfo)
+                    wx.setStorageSync('token', res.token)
                     resolve(res)
                     this.hideLoading() // 隐藏提示信息
                     this.toast('登录成功')
