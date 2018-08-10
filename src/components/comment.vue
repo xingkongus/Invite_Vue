@@ -2,12 +2,12 @@
   <div class="comment">
     <div class="comment_title">朋友留言</div>
     <scroll-view scroll-y class="comment_detail">
-      <div class="comment_user" v-for="item in commentinfo" :key="item.id">
+      <div class="comment_user" v-for="(item,index) in commentinfo" :key="item.id">
         <div class="user_detail">
           <img class="user_avatar" :src="item.avatar" >
           <div class="user_name">{{item.nickname}}</div>
           <div class="praise">
-            <div class="ispraise" :class="[ item.IsLikeflag ? 'pass' : 'loser']"></div>
+            <div class="ispraise" :class="[ item.IsLikeflag ? 'pass' : 'loser']" @click="addlike(index,item.id)"></div>
             <div class="praise_num">{{item.goodnum}}</div>
           </div>
         </div>
@@ -15,7 +15,7 @@
       </div>
     </scroll-view>
     <div class="comment_send">
-      <textarea placeholder="给朋友留言的地方~点击我点击我！" class="comment_text"></textarea>
+      <textarea placeholder="给朋友留言的地方~点击我点击我！" class="comment_text" v-model="text"></textarea>
       <button class="comment_button" open-type="getUserInfo" @getuserinfo="getUserInfoCallBack">留言</button>
     </div>
   </div>
@@ -25,6 +25,12 @@
   import { utils } from '@/utils/index'
   import store from '@/utils/store'
   export default {
+    data () {
+      return {
+        userInfo: {}, // 用户详细信息
+        text: '' // 评论输入框内容
+      }
+    },
     props: ['commentinfo'],
     methods: {
       getUserInfoCallBack (e) {
@@ -38,6 +44,26 @@
                 userInfo: res
               })
             })
+        }
+        this.userInfo = userInfo
+        let tempmessage = {
+          'avatar': this.userInfo.avatarUrl,
+          'nickname': this.userInfo.nickName,
+          'content': this.text,
+          'goodnum': '0',
+          'IsLikeflag': false
+        }
+        this.commentinfo.push(tempmessage)
+        console.log(this.commentinfo)
+        this.text = ''
+      },
+      // 点赞 (index为数组索引值  id为点击评论的id号)
+      addlike (index, id) {
+        if (this.commentinfo.filter(v => v.id === id && v.IsLikeflag).length) { // 判断是否已经点赞(采用filter过滤器)
+          utils.toast('您已点赞！')
+        } else {
+          this.commentinfo[index].IsLikeflag = true
+          this.commentinfo[index].goodnum += 1
         }
       }
     }
