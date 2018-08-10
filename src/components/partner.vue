@@ -35,14 +35,29 @@
         }
         this.userInfo = userInfo
         // 添加前端限制允许一个用户只参与一次
-        let ispartner = true
-        for (let i = 0; i < this.partnernum; i++) {
-          if (this.partnerinfo[i].avatar === this.userInfo.avatarUrl) {
-            ispartner = false
-          }
-        }
-        // 若还未参加则加入 否则提示已经参加
-        if (ispartner) {
+        // 传统for循环方式
+        // let ispartner = true
+        // for (let i = 0; i < this.partnernum; i++) {
+        //   if (this.partnerinfo[i].avatar === this.userInfo.avatarUrl) {
+        //     ispartner = false
+        //   }
+        // }
+        // // 若还未参加则加入 否则提示已经参加
+        // if (ispartner) {
+        //   let obj = {avatar: this.userInfo.avatarUrl}
+        //   this.partnerinfo.push(obj)
+        //   http.post('SetPartner', {invite_id: this.inviteid, openId_id: this.userInfo.openId})
+        //     .then(result => {
+        //       console.log(result)
+        //     })
+        //   utils.toast('报名成功！')
+        // } else {
+        //   utils.toast('您已报名！')
+        // }
+        // 采用filter过滤器方法
+        if (this.partnerinfo.filter(v => v.avatar === this.userInfo.avatarUrl).length) {
+          utils.toast('您已报名！')
+        } else {
           let obj = {avatar: this.userInfo.avatarUrl}
           this.partnerinfo.push(obj)
           http.post('SetPartner', {invite_id: this.inviteid, openId_id: this.userInfo.openId})
@@ -50,8 +65,6 @@
               console.log(result)
             })
           utils.toast('报名成功！')
-        } else {
-          utils.toast('您已报名！')
         }
       }
     },
