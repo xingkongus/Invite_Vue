@@ -31,7 +31,7 @@ export default {
                   .then(res => {
                     wx.setStorageSync('userInfo', res.userinfo)
                     wx.setStorageSync('token', res.token)
-                    resolve(res)
+                    resolve(res.userinfo)
                     this.hideLoading() // 隐藏提示信息
                     this.toast('登录成功')
                   })
