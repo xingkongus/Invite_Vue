@@ -97,6 +97,7 @@
             console.log(result)
             utils.hideLoading() // 隐藏提示信息
             utils.toast('制作完成')
+            wx.navigateTo({ url: '../index/main' })
           })
           .catch(error => {
             utils.hideLoading() // 隐藏提示信息

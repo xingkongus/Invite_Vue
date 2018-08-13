@@ -18,6 +18,7 @@ export default {
         if (!userInfo) {
           this.userInfo = await utils.wx_userinfo(data.iv, data.encryptedData)
         }
+        wx.navigateTo({ url: '../create/main' })
       }
     }
   }
