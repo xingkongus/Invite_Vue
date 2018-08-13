@@ -63,6 +63,24 @@ export default {
       })
     })
   },
+  // 封装showModal方法
+  showModal (title = 'error', content = '留言不能为空~~~~') {
+    return new Promise((resolve, reject) => {
+      wx.showModal({
+        title: title,
+        content: content,
+        success: res => {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+          resolve(res)
+        },
+        error: err => reject(err)
+      })
+    })
+  },
   // 封装loading状态方法
   showLoading (title = '加载中', mask = true) {
     return new Promise((resolve, reject) => {

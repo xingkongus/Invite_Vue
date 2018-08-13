@@ -39,32 +39,34 @@
         if (!(this.userInfo = wx.getStorageSync('userInfo'))) {
           this.userInfo = await utils.wx_userinfo(data.iv, data.encryptedData)
         }
-        let tempmessage = {
-          'avatar': this.userInfo.avatarUrl,
-          'nickname': this.userInfo.nickName,
-          'content': this.text,
-          'goodnum': 0,
-          'IsLikeflag': false
+        let tempmessage = { 'avatar': this.userInfo.avatarUrl, 'nickname': this.userInfo.nickName, 'content': this.text, 'goodnum': 0, 'IsLikeflag': false }
+        if (this.text) { // 判断输入框是否为空
+          this.commentinfo.push(tempmessage)
+          const result = await http.post('SetComment', {invite_id: this.inviteid, openId_id: this.userInfo.openId, content: this.text})
+          if (result.status === 200) {
+            utils.toast('留言成功！')
+          } else {
+            utils.toast('未知错误！')
+          }
+        } else {
+          utils.showModal() // 提示留言为空
         }
-        this.commentinfo.push(tempmessage)
-        http.post('SetComment', {invite_id: this.inviteid, openId_id: this.userInfo.openId, content: this.text})
-          .then(result => {
-            console.log(result)
-          })
-        this.text = ''
+        this.text = '' // 清空输入框
       },
       // 点赞 (index为数组索引值  id为点击评论的id号)
-      addlike (index, id) {
+      async addlike (index, id) {
         this.userInfo = wx.getStorageSync('userInfo')
         if (this.commentinfo.filter(v => v.id === id && v.IsLikeflag).length) { // 判断是否已经点赞(采用filter过滤器)
           utils.toast('您已点赞！')
         } else {
           this.commentinfo[index].IsLikeflag = true
           this.commentinfo[index].goodnum += 1
-          http.post('SetLike', {comment_id: id, openId_id: this.userInfo.openId})
-            .then(result => {
-              console.log(result)
-            })
+          const result = await http.post('SetLike', {comment_id: id, openId_id: this.userInfo.openId})
+          if (result.status === 200) {
+            utils.toast('点赞成功！')
+          } else {
+            utils.toast('未知错误！')
+          }
         }
       }
     }

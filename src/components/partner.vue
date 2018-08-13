@@ -52,11 +52,12 @@
         } else {
           let obj = {avatar: this.userInfo.avatarUrl}
           this.partnerinfo.push(obj)
-          http.post('SetPartner', {invite_id: this.inviteid, openId_id: this.userInfo.openId})
-            .then(result => {
-              console.log(result)
-            })
-          utils.toast('报名成功！')
+          const result = await http.post('SetPartner', {invite_id: this.inviteid, openId_id: this.userInfo.openId})
+          if (result.status === 200) {
+            utils.toast('报名成功！')
+          } else {
+            utils.toast('未知错误！')
+          }
         }
       }
     },
