@@ -30,7 +30,7 @@ export default {
                     encryptedData: encryptedData
                   })
                   .then(res => {
-                    wx.setStorageSync('userInfo', res.userinfo)
+                    store.dispatch('setUser', res.userinfo)
                     store.dispatch('refreshToken', res.token)
                     resolve(res.userinfo)
                     this.hideLoading() // 隐藏提示信息

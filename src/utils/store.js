@@ -9,8 +9,9 @@ const store = new Vuex.Store({
     token: wx.getStorageSync('token')
   },
   mutations: {
-    setUser: (state, payload) => {
-      state.userInfo = payload.userInfo
+    setUser (state, payload) {
+      state.userInfo = payload.userInfo ? payload.userInfo : payload
+      wx.setStorageSync('userInfo', state.userInfo)
     },
     refreshToken (state, token) {
       state.token = token
@@ -18,6 +19,11 @@ const store = new Vuex.Store({
     }
   },
   actions: {
+    setUser ({commit}, userInfo) {
+      return new Promise(function (resolve, reject) {
+        commit('setUser', userInfo)
+      })
+    },
     refreshToken ({commit}, token) {
       return new Promise(function (resolve, reject) {
         commit('refreshToken', token)
