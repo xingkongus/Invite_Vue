@@ -12,7 +12,6 @@
 
 <script type="text/ecmascript-6">
   import { http, utils } from '@/utils/index'
-  import store from '@/utils/store'
   export default {
     data () {
       return {
@@ -21,19 +20,13 @@
     },
     props: ['partnerinfo', 'inviteid'],
     methods: {
-      getUserInfoCallBack (e) {
+      async getUserInfoCallBack (e) {
         let data = e.mp.detail
         let userInfo = wx.getStorageSync('userInfo')
         // 未登录情况才执行
         if (!userInfo) {
-          utils.wx_userinfo(data.iv, data.encryptedData)
-            .then(res => {
-              store.commit('setUser', { // 通知vuex改变状态
-                userInfo: res
-              })
-            })
+          this.userInfo = await utils.wx_userinfo(data.iv, data.encryptedData)
         }
-        this.userInfo = userInfo
         // 添加前端限制允许一个用户只参与一次
         // 传统for循环方式
         // let ispartner = true

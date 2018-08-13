@@ -1,4 +1,5 @@
 import http from '@/utils/http'
+import store from './store'
 export default {
   // 微信登录 获取code
   wx_login () {
@@ -30,7 +31,7 @@ export default {
                   })
                   .then(res => {
                     wx.setStorageSync('userInfo', res.userinfo)
-                    wx.setStorageSync('token', res.token)
+                    store.dispatch('refreshToken', res.token)
                     resolve(res.userinfo)
                     this.hideLoading() // 隐藏提示信息
                     this.toast('登录成功')

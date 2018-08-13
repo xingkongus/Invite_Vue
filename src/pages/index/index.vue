@@ -46,9 +46,7 @@ export default {
     let userInfo = wx.getStorageSync('userInfo')
     if (userInfo) {
       this.userInfo = userInfo
-      store.commit('setUser', {
-        userInfo: userInfo
-      })
+      store.commit('setUser', { userInfo: userInfo })
     }
   },
   mounted () {
