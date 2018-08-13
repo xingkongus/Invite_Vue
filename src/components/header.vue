@@ -1,7 +1,7 @@
 <template>
   <div class="header">
-    <img class="userinfo_avatar" :src="userInfo.avatarUrl">
-    <p class="userinfo_nickname">{{userInfo.nickName}}</p>
+    <img class="userinfo_avatar" :src="userInfo.avatarUrl ? userInfo.avatarUrl : userInfodefault.avatarUrl">
+    <p class="userinfo_nickname">{{userInfo.nickName ? userInfo.nickName : userInfodefault.nickName}}</p>
     <p class="title">的邀请函</p>
   </div>
 </template>
@@ -11,11 +11,12 @@
   export default {
     data () {
       return {
+        userInfodefault: { avatarUrl: '/static/avatar-default.png', nickName: '我的' } // 默认值
       }
     },
     computed: {
       userInfo () {
-        return store.state.userInfo
+        return store.state.userInfo // vuex状态改变
       }
     },
     mounted () {

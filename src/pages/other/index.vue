@@ -13,6 +13,8 @@
       <!--创建自己邀请函-->
       <owner></owner>
     </div>
+    <!--星空版权声明-->
+    <footers></footers>
   </div>
 </template>
 
