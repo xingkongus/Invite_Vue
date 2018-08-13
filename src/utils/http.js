@@ -1,9 +1,6 @@
+import store from './store'
 const API_HOST = 'http://invite.test/api/'
-const header = {
-  'Accept': 'application/json',
-  'content-type': 'application/json',
-  'Authorization': wx.getStorageSync('token')
-}
+
 export default {
   request (method, url, data) {
     return new Promise((resolve, reject) => {
@@ -11,10 +8,14 @@ export default {
         url: API_HOST + url,
         method: method,
         data: data,
-        header: header,
+        header: {
+          'Accept': 'application/json',
+          'content-type': 'application/json',
+          'Authorization': store.state.token
+        },
         success: (res) => {
           if (res.header.Authorization) {
-            wx.setStorageSync('token', res.header.Authorization)
+            store.dispatch('refreshToken', res.header.Authorization)
           }
           if (res.statusCode === 200) {
             resolve(res.data)

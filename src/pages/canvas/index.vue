@@ -20,7 +20,7 @@
       return h('view', [
         h('image', {
           props: {
-            src: 'xxxx'
+            src: 'http://icharle-1251944239.cosgz.myqcloud.com/xingkong/invitebg.png'
           },
           style: {
             left: 0,
@@ -31,7 +31,7 @@
         }),
         h('image', {
           props: {
-            src: 'xxxx'
+            src: 'https://api.icharle.com/img/oO9MA5ZLPn_3Iyvn7jQbMu0IZhy0.png'
           },
           style: {
             left: 310,

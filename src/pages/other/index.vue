@@ -39,7 +39,7 @@
       console.log(options.scene)
     },
     mounted () {
-      http.post('BackInfo', {openid: 'oO9MA5UsXMz731NFvsjiqavjUsGc'})
+      http.post('BackInfofriend', {openid: 'oO9MA5UsXMz731NFvsjiqavjUsGc'})
         .then(result => {
           this.userInfo.avatarUrl = result.avatarUrl
           this.userInfo.nickName = result.nickName
