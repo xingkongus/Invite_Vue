@@ -1,3 +1,4 @@
+<!--suppress ALL -->
 <template>
   <div class="comment">
     <div class="comment_title">朋友留言</div>
@@ -34,9 +35,8 @@
     methods: {
       async getUserInfoCallBack (e) {
         let data = e.mp.detail
-        let userInfo = wx.getStorageSync('userInfo')
         // 未登录情况才执行
-        if (!userInfo) {
+        if (!(this.userInfo = wx.getStorageSync('userInfo'))) {
           this.userInfo = await utils.wx_userinfo(data.iv, data.encryptedData)
         }
         let tempmessage = {

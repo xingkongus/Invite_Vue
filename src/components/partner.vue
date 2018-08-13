@@ -22,9 +22,8 @@
     methods: {
       async getUserInfoCallBack (e) {
         let data = e.mp.detail
-        let userInfo = wx.getStorageSync('userInfo')
         // 未登录情况才执行
-        if (!userInfo) {
+        if (!(this.userInfo = wx.getStorageSync('userInfo'))) {
           this.userInfo = await utils.wx_userinfo(data.iv, data.encryptedData)
         }
         // 添加前端限制允许一个用户只参与一次
