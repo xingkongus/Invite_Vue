@@ -1,7 +1,11 @@
 <template>
   <div>
-    <canvas canvas-id="canvas"></canvas>
-    <button @click="save">导出</button>
+    <div style='width:0px;height:0px;overflow:hidden;'><canvas canvas-id="canvas"></canvas></div>
+    <div class='qrcode'>
+      <img class='qrcode_img' src="/static/code.png" @click="save" >
+      <p>点击图片保存小程序码</p>
+      <p>分享到朋友圈</p>
+    </div>
   </div>
 </template>
 
@@ -81,4 +85,14 @@
   canvas
     width 875px
     height 1301px
+  .qrcode
+    display flex
+    flex-direction column
+    text-align center
+    margin-bottom 25px
+    color #fff
+    .qrcode_img
+      width 187.5px
+      height 187.5px
+      margin-bottom 10px
 </style>

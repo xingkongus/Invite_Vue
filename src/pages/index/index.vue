@@ -5,14 +5,16 @@
     <!--中间内容部分-->
     <div class="content">
       <!--拍照地点及内容-->
-      <place :placeinfo="placeinfo"></place>
+      <place :placeinfo="placeinfo" v-if="flag"></place>
       <!--邀请到朋友-->
-      <partner :partnerinfo="partnerinfo" :inviteid="inviteid"></partner>
+      <partner :partnerinfo="partnerinfo" :inviteid="inviteid" v-if="flag"></partner>
       <!--留言板块-->
-      <comment :commentinfo="commentinfo" :inviteid="inviteid"></comment>
+      <comment :commentinfo="commentinfo" :inviteid="inviteid" v-if="flag"></comment>
       <!--创建自己邀请函-->
       <owner></owner>
     </div>
+    <!--canvas层-->
+    <canvass v-if="flag"></canvass>
     <!--星空版权声明-->
     <footers></footers>
   </div>
@@ -25,12 +27,14 @@ import place from '@/components/place'
 import partner from '@/components/partner'
 import comment from '@/components/comment'
 import owner from '@/components/owner'
+import canvass from '@/components/canvas'
 import store from '@/utils/store'
 import { http } from '@/utils/index'
 
 export default {
   data () {
     return {
+      flag: false, // 默认不显示
       userInfo: {}, // 用户个人信息
       placeinfo: {}, // 选择地方及文案
       partnerinfo: {}, // 参与者
@@ -41,15 +45,13 @@ export default {
 
   methods: {
   },
-
-  created () {
+  mounted () {
     let userInfo = wx.getStorageSync('userInfo')
     if (userInfo) {
       this.userInfo = userInfo
+      this.flag = true
       store.dispatch('setUser', userInfo)
     }
-  },
-  mounted () {
     http.post('BackInfo', {openid: this.userInfo.openId})
       .then(result => {
         this.placeinfo.pic = result.siteImg
@@ -66,7 +68,8 @@ export default {
     place,
     partner,
     comment,
-    owner
+    owner,
+    canvass
   }
 }
 </script>
