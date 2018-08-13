@@ -1,7 +1,11 @@
 <template>
   <div class="container">
     <!--头部头像昵称-->
-    <headers :userInfo="userInfo"></headers>
+    <div class="header">
+      <img class="userinfo_avatar" :src="userInfo.avatarUrl">
+      <p class="userinfo_nickname">{{userInfo.nickName}}</p>
+      <p class="title">的邀请函</p>
+    </div>
     <!--中间内容部分-->
     <div class="content">
       <!--拍照地点及内容-->
@@ -19,7 +23,6 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import headers from '@/components/header'
   import footers from '@/components/footer'
   import place from '@/components/place'
   import partner from '@/components/partner'
@@ -38,10 +41,7 @@
     },
     onLoad () {
       let options = this.$root.$mp.query
-      console.log(options.scene)
-    },
-    mounted () {
-      http.post('BackInfofriend', {openid: 'oO9MA5UsXMz731NFvsjiqavjUsGc'})
+      http.post('BackInfofriend', {openid: options.scene})
         .then(result => {
           this.userInfo.avatarUrl = result.avatarUrl
           this.userInfo.nickName = result.nickName
@@ -53,8 +53,9 @@
           console.log(result)
         })
     },
+    mounted () {
+    },
     components: {
-      headers,
       footers,
       place,
       partner,
@@ -65,5 +66,20 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-
+  .header
+    width 100%
+    height auto
+    color #fff
+    .userinfo_avatar
+      display block
+      margin 0 auto 15px
+      width 128px
+      height 128px
+      border-radius 50%
+    .userinfo_nickname
+      text-align center
+      font-size 40px
+    .title
+      text-align center
+      font-size 20px
 </style>

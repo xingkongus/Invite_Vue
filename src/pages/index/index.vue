@@ -45,6 +45,17 @@ export default {
   },
 
   methods: {
+    init () {
+      http.post('BackInfo', {openid: this.userInfo.openId})
+        .then(result => {
+          this.placeinfo.pic = result.siteImg
+          this.placeinfo.text = result.invitewords
+          this.partnerinfo = result.acceptedAvators
+          this.commentinfo = result.message
+          this.inviteid = result.inviteID
+          console.log(result)
+        })
+    }
   },
   mounted () {
     let userInfo = wx.getStorageSync('userInfo')
@@ -53,16 +64,8 @@ export default {
       this.flag = true
       this.imgid = this.userInfo.openId
       store.dispatch('setUser', userInfo)
+      this.init()
     }
-    http.post('BackInfo', {openid: this.userInfo.openId})
-      .then(result => {
-        this.placeinfo.pic = result.siteImg
-        this.placeinfo.text = result.invitewords
-        this.partnerinfo = result.acceptedAvators
-        this.commentinfo = result.message
-        this.inviteid = result.inviteID
-        console.log(result)
-      })
   },
   components: {
     headers,
