@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style='width:0px;height:0px;overflow:hidden;'><canvas canvas-id="canvas"></canvas></div>
+    <canvas canvas-id="canvas"></canvas>
     <div class='qrcode'>
       <img class='qrcode_img' src="/static/code.png" @click="save" >
       <p>点击图片保存小程序码</p>
@@ -11,6 +11,7 @@
 
 <script type="text/ecmascript-6">
   export default {
+    props: ['imgid'],
     data () {
       return {
         width: 0,
@@ -24,7 +25,7 @@
       return h('view', [
         h('image', {
           props: {
-            src: 'http://icharle-1251944239.cosgz.myqcloud.com/xingkong/invitebg.png'
+            src: 'https://api.icharle.com/img/invitebg.png'
           },
           style: {
             left: 0,
@@ -35,7 +36,7 @@
         }),
         h('image', {
           props: {
-            src: 'https://api.icharle.com/img/oO9MA5ZLPn_3Iyvn7jQbMu0IZhy0.png'
+            src: 'https://api.icharle.com/img/' + this.imgid + '.png'
           },
           style: {
             left: 310,
@@ -83,6 +84,8 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
   canvas
+    position absolute
+    left -100000px
     width 875px
     height 1301px
   .qrcode

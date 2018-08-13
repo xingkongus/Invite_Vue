@@ -14,7 +14,7 @@
       <owner></owner>
     </div>
     <!--canvas层-->
-    <canvass v-if="flag"></canvass>
+    <canvass :imgid="imgid" v-if="flag"></canvass>
     <!--星空版权声明-->
     <footers></footers>
   </div>
@@ -39,7 +39,8 @@ export default {
       placeinfo: {}, // 选择地方及文案
       partnerinfo: {}, // 参与者
       commentinfo: {}, // 评论
-      inviteid: 0 // 邀请函ID值
+      inviteid: 0, // 邀请函ID值
+      imgid: '' // 小程序码ID用于canvas生成
     }
   },
 
@@ -50,6 +51,7 @@ export default {
     if (userInfo) {
       this.userInfo = userInfo
       this.flag = true
+      this.imgid = this.userInfo.openId
       store.dispatch('setUser', userInfo)
     }
     http.post('BackInfo', {openid: this.userInfo.openId})
