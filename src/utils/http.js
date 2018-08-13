@@ -1,4 +1,5 @@
 import store from './store'
+import {utils} from './index'
 const API_HOST = 'http://invite.test/api/'
 
 export default {
@@ -20,6 +21,7 @@ export default {
           if (res.statusCode === 200) {
             resolve(res.data)
           } else {
+            utils.toast('未知错误！')
             reject(new Error())
           }
         },

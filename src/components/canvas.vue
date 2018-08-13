@@ -10,6 +10,7 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import { utils } from '@/utils/index'
   export default {
     props: ['imgid'],
     data () {
@@ -55,27 +56,16 @@
           width: 1175,
           height: 1451,
           canvasId: 'canvas',
-          success: function (res) {
+          success: res => {
             wx.saveImageToPhotosAlbum({
               filePath: res.tempFilePath,
-              success (res) {
-                wx.showModal({
-                  title: '分享二维码已保存到系统相册',
-                  content: '快去分享给朋友，让更多的朋友发现这里的美好',
-                  success: function (res) {
-                    if (res.confirm) {
-                      console.log('用户点击确定')
-                    } else if (res.cancel) {
-                      console.log('用户点击取消')
-                    }
-                  }
-                })
+              success: res => {
+                utils.showModal('分享二维码已保存到系统相册', '快去分享给朋友，让更多的朋友发现这里的美好')
               },
-              fail (res) {
-                console.log(res)
-              }
+              fail: err => { console.log(err) }
             })
-          }
+          },
+          fail: err => { console.log(err) }
         })
       }
     }

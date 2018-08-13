@@ -1,3 +1,4 @@
+<!--suppress ALL -->
 <template>
   <div class="container">
     <!--头部头像昵称-->
@@ -5,7 +6,7 @@
     <!--中间内容部分-->
     <div class="content">
       <!--拍照地点及内容-->
-      <place :placeinfo="placeinfo" v-if="flag"></place>
+      <place :placeinfo="placeinfo"></place>
       <!--邀请到朋友-->
       <partner :partnerinfo="partnerinfo" :inviteid="inviteid" v-if="flag"></partner>
       <!--留言板块-->
@@ -35,6 +36,7 @@ export default {
   data () {
     return {
       flag: false, // 默认不显示
+      containerHeight: '',
       userInfo: {}, // 用户个人信息
       placeinfo: {}, // 选择地方及文案
       partnerinfo: {}, // 参与者
