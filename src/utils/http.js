@@ -1,7 +1,7 @@
 import store from './store'
-import {utils} from './index'
-const API_HOST = 'http://invite.test/api/'
+import {utils, API_HOST} from './index'
 
+// noinspection JSAnnotator
 export default {
   request (method, url, data) {
     return new Promise((resolve, reject) => {

@@ -12,7 +12,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { utils } from '@/utils/index'
+  import { utils, IMG_HOST } from '@/utils/index'
   export default {
     props: ['imgid'],
     data () {
@@ -45,7 +45,7 @@
           views: [
             {
               type: 'image',
-              url: 'https://api.icharle.com/img/' + this.imgid + '.png',
+              url: IMG_HOST + this.imgid + '.png',
               css: {
                 bottom: '70px',
                 left: '310px',

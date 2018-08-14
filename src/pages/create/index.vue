@@ -53,7 +53,7 @@
         }
       }
     },
-    created () {
+    mounted () {
       let userInfo = wx.getStorageSync('userInfo')
       if (userInfo) {
         this.userInfo = userInfo
@@ -88,10 +88,11 @@
         this.flag = !this.flag
       },
       // 完成按钮
-      submit () {
+      async submit () {
         let content = this.placeinfo.text
         let pic = this.placeinfo.pic
         utils.showLoading('制作中...') // 网络延迟提示信息
+        await http.post('GetUrl', {scene: this.userInfo.openId}) // 请求场景值小程序码
         http.post('SetInvite', {openId_id: this.userInfo.openId, content: content, pic: pic})
           .then(result => {
             console.log(result)
