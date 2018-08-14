@@ -28,7 +28,7 @@
   import partner from '@/components/partner'
   import comment from '@/components/comment'
   import owner from '@/components/owner'
-  import { http } from '@/utils/index'
+  import { http, utils } from '@/utils/index'
   export default {
     data () {
       return {
@@ -41,6 +41,7 @@
     },
     onLoad () {
       let options = this.$root.$mp.query
+      utils.showNavBarLoad()
       http.post('BackInfofriend', {openid: options.scene})
         .then(result => {
           this.userInfo.avatarUrl = result.avatarUrl
@@ -50,7 +51,8 @@
           this.partnerinfo = result.acceptedAvators
           this.commentinfo = result.message
           this.inviteid = result.inviteID
-          console.log(result)
+          utils.hideNavBarLoad()
+          // console.log(result)
         })
     },
     mounted () {

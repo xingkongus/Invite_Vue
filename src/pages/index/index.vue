@@ -30,7 +30,7 @@ import comment from '@/components/comment'
 import owner from '@/components/owner'
 import canvass from '@/components/canvas'
 import store from '@/utils/store'
-import { http } from '@/utils/index'
+import { http, utils } from '@/utils/index'
 
 export default {
   data () {
@@ -48,6 +48,7 @@ export default {
 
   methods: {
     init () {
+      utils.showNavBarLoad()
       http.post('BackInfo', {openid: this.userInfo.openId})
         .then(result => {
           this.placeinfo.pic = result.siteImg
@@ -56,6 +57,7 @@ export default {
           this.commentinfo = result.message
           this.inviteid = result.inviteID
           console.log(result)
+          utils.hideNavBarLoad()
         })
     }
   },

@@ -94,6 +94,14 @@ export default {
   // 封装隐藏loading状态方法
   hideLoading () {
     wx.hideLoading()
+  },
+  // 导航栏loading
+  showNavBarLoad () {
+    wx.showNavigationBarLoading()
+  },
+  // 导航栏loading
+  hideNavBarLoad () {
+    wx.hideNavigationBarLoading()
   }
 
 }
