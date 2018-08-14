@@ -1,6 +1,8 @@
 <template>
   <div>
-    <canvas canvas-id="canvas"></canvas>
+    <div style="position: absolute; left: -100000px">
+      <painter @imgOK="onImgOk" :palette="template" />
+    </div>
     <div class='qrcode'>
       <img class='qrcode_img' src="/static/code.png" @click="save" >
       <p>点击图片保存小程序码</p>
@@ -15,69 +17,51 @@
     props: ['imgid'],
     data () {
       return {
-        width: 0,
-        height: 0
+        shareImg: '',
+        template: {}
       }
     },
-    canvasOptions: {
-      canvasId: 'canvas'
-    },
-    renderCanvas (h) {
-      return h('view', [
-        h('image', {
-          props: {
-            src: 'https://api.icharle.com/img/invitebg.png'
-          },
-          style: {
-            left: 0,
-            top: 0,
-            width: 875,
-            height: 1301
-          }
-        }),
-        h('image', {
-          props: {
-            src: 'https://api.icharle.com/img/' + this.imgid + '.png'
-          },
-          style: {
-            left: 310,
-            top: 981,
-            width: 250,
-            height: 250
-          }
-        })
-      ])
-    },
     methods: {
-      save () {
-        wx.canvasToTempFilePath({
-          x: 0,
-          y: 0,
-          width: 1175,
-          height: 1451,
-          canvasId: 'canvas',
+      onImgOk (e) {
+        wx.hideLoading()
+        this.shareImg = e.mp.detail.path
+        wx.saveImageToPhotosAlbum({
+          filePath: this.shareImg,
           success: res => {
-            wx.saveImageToPhotosAlbum({
-              filePath: res.tempFilePath,
-              success: res => {
-                utils.showModal('分享二维码已保存到系统相册', '快去分享给朋友，让更多的朋友发现这里的美好')
-              },
-              fail: err => { console.log(err) }
-            })
+            utils.showModal('分享二维码已保存到系统相册', '快去分享给朋友，让更多的朋友发现这里的美好')
           },
           fail: err => { console.log(err) }
         })
+      },
+      save () {
+        wx.showLoading({
+          title: '绘制分享图片中',
+          mask: true
+        })
+        this.template = {
+          background: '/static/invitebg.png',
+          width: '875px',
+          height: '1301px',
+          borderRadius: '10px',
+          views: [
+            {
+              type: 'image',
+              url: 'https://api.icharle.com/img/' + this.imgid + '.png',
+              css: {
+                bottom: '70px',
+                left: '310px',
+                width: '250px',
+                height: '250px'
+              }
+            }
+          ]
+        }
       }
     }
   }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  canvas
-    position absolute
-    left -100000px
-    width 875px
-    height 1301px
   .qrcode
     display flex
     flex-direction column
