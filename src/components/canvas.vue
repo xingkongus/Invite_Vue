@@ -23,7 +23,7 @@
     },
     methods: {
       onImgOk (e) {
-        wx.hideLoading()
+        utils.hideLoading() // 隐藏loading
         this.shareImg = e.mp.detail.path
         wx.saveImageToPhotosAlbum({
           filePath: this.shareImg,
@@ -32,12 +32,11 @@
           },
           fail: err => { console.log(err) }
         })
+        this.template = {} // 重置,下次点击生成时重新生成
       },
       save () {
-        wx.showLoading({
-          title: '绘制分享图片中',
-          mask: true
-        })
+        utils.showLoading('绘制分享图片中')
+        // 绘制样式
         this.template = {
           background: '/static/invitebg.png',
           width: '875px',
