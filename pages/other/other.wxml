@@ -1,0 +1,46 @@
+<!--index.wxml-->
+<view class="container">
+    <!-- <view> -->
+      <image src="{{avatarUrl}}" class="userinfo-avatar"></image>
+      <text class="userinfo-nickname">{{nickName}}</text>
+      <text class="heading">的邀请函</text>
+    <!-- </view> -->
+     <view class="site"> 
+        <image src="{{siteImg}}" class="siteimg" mode="widthFix"></image>
+        <textarea auto-height class="inviteword" value="{{invitewords}}" disabled='true'></textarea>
+    </view> 
+     <view class="accepted"> 
+        <text style="display:block; font-size:76rpx;" >已邀请到</text>
+        <text class="acceptnum">{{peoplenum}}</text>
+        <text>人</text>
+        <view class="invited-avavtars">
+            <view class="square"></view>
+              <image wx:for="{{acceptAvators}}" wx:key="accept" src="{{item.avatar}}"></image>  
+         </view> 
+    </view> 
+    <button class="join" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" data-id='accept'>我 要 去</button>
+    <view class="message"> 
+        <text class="messagehead">朋友留言</text>
+        <scroll-view class="messagebar" scroll-y style="height:1050rpx;">
+            <view class="messagelist" wx:for="{{message}}" wx:key="message">
+                <view class="list">
+                  <view class="friendinfor">
+                      <image class="friend-avatar" src="{{item.avatar}}"></image>
+                      <text class="friend-name">{{item.nickname}}</text>
+                  </view>
+                  <view class="feelgood"> 
+                      <view class="{{item.IsLikeflag == true ? 'good' : 'error'}}" data-id='{{item.id}}'  bindtap="addLike"></view>
+                      <text class="goodnum">{{item.goodnum}}</text>
+                  </view>
+                </view>
+                 <text class="messagecon">{{item.content}}</text> 
+            </view> 
+        </scroll-view>
+        <view class="message-commit">
+            <textarea placeholder="给朋友留言的地方~点击我点击我！" bindinput="saveMessage" value="{{messageValue}}"></textarea>
+            <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" data-id='submitMessage'>留言</button>
+        </view>
+    </view>  
+    <button class="create" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" data-id='make' >制作我的邀请函</button>
+    <text style="color:#aaaaaa;font-size: 24rpx;">星空学生创新中心丨Copyright©2018</text>
+</view>

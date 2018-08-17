@@ -1,0 +1,40 @@
+<view class="container">
+    <image src="{{userInfo.avatarUrl}}" class="userinfo-avatar"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    <text class="heading">的邀请函</text>
+    <view class="sites">
+        <view class="nowchossen">
+          <image style="width:100%; border-radius: 10rpx;" src="{{siteURL}}" mode="widthFix"></image>
+          <textarea auto-height class="inviteword" value="{{invitewords}}" bindinput="inInviteword"></textarea>
+        </view>
+        
+        <!-- 预览的情况下隐藏  -->
+         <view class="choosesite" wx:if="{{!isPreview}}">
+            <view class="administrate" id="administrate" bindtap="changeSite">
+              <image src="{{administraimg}}" mode="widthFix">></image>
+              <text class="sitename">行政楼</text>
+            </view>
+            <view class="library" id="library" bindtap="changeSite">
+              <image src="{{libimg}}" mode="widthFix">></image>
+              <text class="sitename">图书馆</text>
+            </view>
+            <view class="stairs" id="stairs" bindtap="changeSite">
+              <image src="{{stairsimg}}" mode="widthFix">></image>
+              <text class="sitename">活动中心</text>
+            </view>
+            <view class="ground" id="ground" bindtap="changeSite">
+              <image src="{{groundimg}}" mode="widthFix"></image>
+              <text class="sitename">田径场</text>
+            </view>
+        </view> 
+
+    </view>
+    <view class="btns">
+        <button class="preview" bindtap="tabpreview">
+          <block wx:if="{{!isPreview}}">预览结果</block>
+          <block wx:else="{{isPreview}}">重做</block>
+        </button>
+        <button class="finish" bindtap="tabfinish">完成!</button>
+    </view>
+    <text style="color:#aaaaaa;font-size: 24rpx; margin-top:100rpx;">星空学生创新中心丨Copyright©2018</text>
+</view>

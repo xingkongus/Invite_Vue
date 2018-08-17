@@ -1,0 +1,211 @@
+/**index.wxss**/
+
+.userinfo-avatar {
+  width: 245rpx;
+  height: 245rpx;
+  margin: 0 20rpx;
+  border-radius: 50%;
+}
+.userinfo-nickname {
+  margin-top: 20rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 80rpx;
+  color: #fff; 
+}
+
+.heading {
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 40rpx;
+  color: #fff; 
+}
+
+.site {
+  position: relative;
+  width: 100%;
+}
+.siteimg {
+  width: 100%;
+  border-radius: 10rpx;
+}
+
+.inviteword {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0 5%;
+  padding: 50rpx 0;
+  width: 90%;
+  color: #505050;
+  font-size: 38rpx;
+}
+
+.accepted {
+  width: 100%;
+  text-align: center;
+}
+.accepted > text {
+  color: #fff;
+}
+.acceptnum {
+  width: 100%;
+  font-size: 100rpx;
+}
+.invited-avavtars {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  position: relative;
+  width: 100%;
+  margin-top: 60rpx;
+  border-radius: 10rpx;
+  background-color: #fff;
+}
+.invited-avavtars .square {
+  position: absolute;
+  top: -110rpx;
+  left: 50%;
+  margin-left: -57rpx;
+  border-width: 57rpx;
+  border-color: transparent transparent #fff transparent;
+  border-style: solid; 
+}
+.invited-avavtars > image {
+  margin: 10rpx;
+  width: 125rpx;
+  height: 125rpx;
+  border-radius: 100%;
+}
+
+.join {
+  margin: 100rpx auto 0;
+  width: 90%;
+  height: 125rpx;
+  border-radius: 100rpx;
+  background-color: #02d1d3;
+  line-height: 125rpx;
+  color: #fff;
+  font-size: 42rpx;
+  font-weight: bold;
+}
+
+.message {
+  margin: 110rpx auto 0;
+  width: 90%;
+}
+.messagehead {
+  display: block;
+  color: #fff; 
+  text-align: center;
+  font-size: 55rpx;
+  font-weight: bold;
+}
+.messagebar {
+  margin-top: 25rpx;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10rpx;
+}
+
+.messagelist {
+  margin: 35rpx 50rpx 43rpx;
+  padding-bottom:  30rpx;
+  border-bottom: 1px solid #aaa;
+}
+.list {
+  margin-bottom: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.friendinfor {
+  display: flex;
+  align-items: center;
+  height: 110rpx;
+}
+.friend-avatar {
+  width: 105rpx;
+  height: 105rpx;
+  border-radius: 100%;
+}
+.friend-name {
+  margin-left: 26rpx;
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #505050;
+}
+.feelgood {
+  display: flex;
+  height: 45rpx;
+  font-size: 40rx;
+}
+.good {
+  width: 45rpx;
+  height: 45rpx;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAApCAYAAABOScuyAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAAAshJREFUWIXV2U+oFVUcwPHPG8RdJYGtw8QMhUdKEf072kYIlUSUEhJ3bRIpoaKCxyySRClRV+0khUe8Rf5PosWtFqIS8spFilKCFaK+IsKeEq/FeQ/Hy525M/eNb7zf3Zxz5jdf5p575vc7Z2Bi+XIFLMMKDGI+5k62/4qfcQYnMFoUJMNjk/GewROYh1m4jkv4Cd+kIRzOCzCQI/wUPsHzJUWGsQVXc/pnYyc2l4x3DlvTEE60dyQdBr+LU8rLwqu4gFUd+p4Uf42ysrAIXw21WnvaO9qF38fHFQJneRCHsCHT9qI4bR7tMeabQ63WZ9mG7JRYi5EeA7cziCu4VlO8D9IQtnFH+CH8WVNw+Bs38UiNMRekIVyYmhIf1hgYHlCvLOwmvuE54rLS6Q94v7EowWr9IQvrEjzXtEUFnk2wtGmLCixM8HjTFhV4ONE/8xcGEkw0bVGBiX57w0kiJi39wlgiJif9wvkEp5u2qMDpBMeatqjA0QSXcaRpkxJcTEP4dmqF2NmoSjk+4s6S1hLLmPuVcRzg7jV4YzMupXgjDeEWdwufwhfN+BQymoawb+qi/Su3Abdm1qcrL2cv2oX/w8qZc+nK5jSEK9mGTnnE19g+Mz6FfJmGsLe9MS/xeQ8H761PIaNpCGs6dRRlaq/g5L3xKeQyXsrr7JZaLhM36WaKfxDSEK7nDegmPI4luFinVQ7/Ymkawi9Fg8ok73+Ju5nnapDK4waeTkPo+rUtW22MidX1D9OxyuE38c3+WGZwlfJoXJSuM7M7i8XdpkGWXuq5VdjVw33tjGBJGsJYlZt6LUDfwts93kvc3V+nh4p9OhXzp3hBnN9VeA1be33odEv878Xt/eMlxp4VN7qHp/PAOvYkfhczqh0FY/aLZx1lT5tyqXMT5R3xTOOPTNttrMfrdT1kVl2BJvlOPH/7HHOwSc1fyf8BvNiJl3/0RuMAAAAASUVORK5CYII=");
+}
+
+.error {
+  width: 45rpx;
+  height: 45rpx;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAApCAYAAABOScuyAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAAAsVJREFUWIXV2U+oFVUcwPHPG6SdJYWtpYxqjCKliNKSNkFkGGGUULQJN0mUUCFtHxRKRbVqFynIw0WlVhItLBeiEfLMH2QoJfSHwB4tBJ8Rtjjv4Xi5M3fm3vFO97ubc8785svM4czvd87UzMyMCtbjEdyFlVi+0P4LfsR3OIjZqiAFbl6Idx9ux01YgnM4gx/wdUTsKwswVSJ8D97G2poie/AS/izpvwY7sbVmvJPYFhEHezuyPoNfw1H1ZeFp/IQNffrulr5GXVlYhS/zPH+/t6NXeDvebBC4yLX4DJsLbQ9K02bFkDFfzPP8w2JDUfhJTA8ZuMhu3IkbcEj/r9iEF/I83754sRjsOuwdMXCRw4gW403neX4Ll4XfaDE4LMWNLcd8j7RKLJOWlVE/3ThYleFxkyELmzI80LVFA+7PsKZriwbcluHWri0acH1mcuYvTGW41LVFAy5N2hvOMilpmRTmMik5mRROZTjWtUUDjmX4vGuLBhzIcBb7uzapwemI+GZxhdjZqUo9prm8pB2Sypj/K/NSYXDFGvxcNy612BIRF7lS+Cgqa/6OmI2IjxYvev9ym3FxvD4DebR40Sv8Lx4bn8tAtkbEr8WGfnnEV3hrPD6VfBIRH/Q2liU+r+PTq+tTyWxEPNGvoypT24gjV8enkrN4uKxzUGq5XtqkGxfn8VBEnCsbMEh4Hqtxuk2rEi5gTUT8XDWoTvL+t7SbebIFqTL+wr0RMfBvW7famJOq6+9HsSrhN+nNnqgzuEl5NC9Jt5nZHccdg6ZBkWHquQ14d4j7etmL1REx1+SmYQvQl/HKkPeSdvc3GaJiH6VifgfrpPndhGewbdiHjlriH5a297+oMfa4dLizZ5QHtrEn8buUUe2oGLNLOuuoe9pUSpubKK9KZxp/FNr+wVN4tq2HLGkr0ALfSudvH2MZntfyX/I/jT2Xj9ciGMYAAAAASUVORK5CYII=");
+}
+.goodnum {
+  margin-left: 5rpx;
+  width: 45rpx;
+  height: 45rpx;
+  line-height: 45rpx;
+  color: #505050;
+  font-size: 40rpx;
+}
+.messagecon {
+  width: 100%;
+  padding-left: 70rpx;
+  font-size: 35rpx;
+  color: #505050;
+}
+
+.message-commit {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 22rpx;
+  width: 100%;
+}
+.message-commit > textarea {
+  padding: 5rpx 8rpx;
+  height: 110rpx;
+  border: 1px solid #aaa;
+  border-radius: 10rpx;
+  background-color: #fff;
+  flex-grow:1;
+}
+.message-commit > button {
+  margin-left: 20rpx; 
+  padding: 0 20rpx;
+  width: 160rpx;
+  height: 120rpx;
+  border-radius: 10rpx;
+  background-color: #25b5ff;
+  line-height: 120rpx;
+  font-size: 38rpx;
+  font-weight: bold;
+  color: #fff;
+}
+
+.create {
+  margin: 70rpx 0 100rpx; 
+  width: 80%;
+  height: 135rpx;
+  background-color: #fcff25;
+  line-height: 135rpx;
+  color: #ff8400;
+  font-size: 45rpx;
+  font-weight: bold;
+}

@@ -1,0 +1,89 @@
+/* pages/index/index2.wxss */
+
+.userinfo-avatar {
+  width: 245rpx;
+  height: 245rpx;
+  margin: 0 20rpx;
+  border-radius: 50%;
+}
+.userinfo-nickname {
+  margin-top: 20rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 80rpx;
+  color: #fff; 
+}
+
+.heading {
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 40rpx;
+  color: #fff; 
+}
+
+.sites {
+  margin-top: 50rpx;
+  width: 100%;
+}
+.nowchossen {
+  position: relative;
+  width: 100%;
+}
+.inviteword {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0 5%;
+  padding: 50rpx 0;
+  width: 90%;
+  color: #505050;
+  font-size: 38rpx;
+}
+.choosesite {
+  margin-top: 125rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.administrate ,
+.library ,
+.stairs ,
+.ground {
+  width: 20%;
+  padding: 10rpx 1% 15rpx;
+  background-color: #00a0e9;
+  border-radius: 10rpx;
+}
+.administrate > image ,
+.library > image ,
+.stairs > image ,
+.ground > image {
+  width: 100%;
+}
+.sitename {
+  width: 100%;
+  text-align: center;
+  font-size: 33rpx;
+  color: #fff;
+  font-weight: bold;
+}
+
+.btns {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 120rpx; 
+  width: 100%;
+}
+.preview {
+  width: 40%;
+  background-color: #00c0ff;
+  color: #007ba3;
+  font-weight: bold;
+  border-radius: 10rpx;
+}
+.finish {
+  width: 55%;
+  background-color: #fcff25; 
+  color: #ff8400;
+  font-weight: bold;
+  border-radius: 10rpx;
+}

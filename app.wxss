@@ -1,0 +1,12 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 115rpx 45rpx;
+  box-sizing: border-box;
+  background-size: cover;
+  background-image: url('http://icharle-1251944239.cosgz.myqcloud.com/xingkong/bg.png'); 
+} 
