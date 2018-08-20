@@ -28,12 +28,19 @@ $ npm run build
 
 ## 效果图
   * 分享朋友圈
+  
     ![朋友圈](/docs/moments.png)
+    
   * 邀请函制作页面
+  
     ![制作页面](/docs/create.png)
+    
   * 评论部分
+  
     ![评论部分](/docs/comment.png)
+    
   * 参与部分
+  
     ![参与部分](/docs/partner.png)
 
 
