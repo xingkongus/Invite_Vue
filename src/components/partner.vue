@@ -20,11 +20,10 @@
     },
     props: ['partnerinfo', 'inviteid'],
     methods: {
-      async getUserInfoCallBack (e) {
-        let data = e.mp.detail
+      async getUserInfoCallBack () {
         // 未登录情况才执行
         if (!(this.userInfo = wx.getStorageSync('userInfo'))) {
-          this.userInfo = await utils.wx_userinfo(data.iv, data.encryptedData)
+          this.userInfo = await utils.wx_userinfo()
         }
         // 添加前端限制允许一个用户只参与一次
         // 传统for循环方式

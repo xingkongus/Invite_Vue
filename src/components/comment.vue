@@ -33,11 +33,10 @@
     },
     props: ['commentinfo', 'inviteid'],
     methods: {
-      async getUserInfoCallBack (e) {
-        let data = e.mp.detail
+      async getUserInfoCallBack () {
         // 未登录情况才执行
         if (!(this.userInfo = wx.getStorageSync('userInfo'))) {
-          this.userInfo = await utils.wx_userinfo(data.iv, data.encryptedData)
+          this.userInfo = await utils.wx_userinfo()
         }
         let tempmessage = { 'avatar': this.userInfo.avatarUrl, 'nickname': this.userInfo.nickName, 'content': this.text, 'goodnum': 0, 'IsLikeflag': false }
         if (this.text) { // 判断输入框是否为空

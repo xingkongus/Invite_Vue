@@ -11,12 +11,11 @@ export default {
       }
     },
     methods: {
-      async getUserInfoCallBack (e) {
-        let data = e.mp.detail
+      async getUserInfoCallBack () {
         let userInfo = wx.getStorageSync('userInfo')
         // 未登录情况才执行
         if (!userInfo) {
-          this.userInfo = await utils.wx_userinfo(data.iv, data.encryptedData)
+          this.userInfo = await utils.wx_userinfo()
         }
         wx.navigateTo({ url: '../create/main' })
       }
