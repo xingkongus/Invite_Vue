@@ -45,7 +45,10 @@ export default {
       imgid: '' // 小程序码ID用于canvas生成
     }
   },
-
+  async created () {
+    await utils.wx_userinfo() // 每次打开小程序登录授权
+    await this.init()
+  },
   methods: {
     init () {
       utils.showNavBarLoad()
@@ -59,6 +62,7 @@ export default {
           console.log(result)
           utils.hideNavBarLoad()
         })
+      utils.hideNavBarLoad()
     }
   },
   mounted () {
