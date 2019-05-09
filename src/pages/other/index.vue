@@ -13,7 +13,7 @@
       <!--邀请到朋友-->
       <partner :partnerinfo="partnerinfo" :inviteid="inviteid"></partner>
       <!--留言板块-->
-      <comment :commentinfo="commentinfo" :inviteid="inviteid"></comment>
+      <!-- <comment :commentinfo="commentinfo" :inviteid="inviteid"></comment> -->
       <!--创建自己邀请函-->
       <owner></owner>
     </div>
@@ -54,6 +54,9 @@
           utils.hideNavBarLoad()
           // console.log(result)
         })
+      wx.showShareMenu({
+        withShareTicket: true
+      })
     },
     mounted () {
     },

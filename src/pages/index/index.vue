@@ -10,7 +10,7 @@
       <!--邀请到朋友-->
       <partner :partnerinfo="partnerinfo" :inviteid="inviteid" v-if="flag"></partner>
       <!--留言板块-->
-      <comment :commentinfo="commentinfo" :inviteid="inviteid" v-if="flag"></comment>
+      <!-- <comment :commentinfo="commentinfo" :inviteid="inviteid" v-if="flag"></comment> -->
       <!--创建自己邀请函-->
       <owner></owner>
     </div>
@@ -74,6 +74,11 @@ export default {
       store.dispatch('setUser', userInfo)
       this.init()
     }
+  },
+  onload () {
+    wx.showShareMenu({
+      withShareTicket: true
+    })
   },
   components: {
     headers,

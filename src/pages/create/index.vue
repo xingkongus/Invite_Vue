@@ -62,6 +62,11 @@
         })
       }
     },
+    onLoad () {
+      wx.showShareMenu({
+        withShareTicket: true
+      })
+    },
     methods: {
       // 改变地点
       changSite (e) {
