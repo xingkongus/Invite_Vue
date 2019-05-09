@@ -40,6 +40,9 @@
       }
     },
     onLoad () {
+      wx.showShareMenu({
+        withShareTicket: true
+      })
       let options = this.$root.$mp.query
       utils.showNavBarLoad()
       http.post('BackInfofriend', {openid: options.scene})
@@ -54,9 +57,6 @@
           utils.hideNavBarLoad()
           // console.log(result)
         })
-      wx.showShareMenu({
-        withShareTicket: true
-      })
     },
     mounted () {
     },

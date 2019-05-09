@@ -6,7 +6,7 @@
     <div class='qrcode'>
       <img class='qrcode_img' src="/static/code.png" @click="save" >
       <p>点击图片保存小程序码</p>
-      <p>分享到朋友圈</p>
+      <!-- <p>分享到朋友圈</p> --> 
     </div>
   </div>
 </template>
@@ -28,7 +28,8 @@
         wx.saveImageToPhotosAlbum({
           filePath: this.shareImg,
           success: res => {
-            utils.showModal('分享二维码已保存到系统相册', '快去分享给朋友，让更多的朋友发现这里的美好')
+            // utils.showModal('分享二维码已保存到系统相册', '快去分享给朋友，让更多的朋友发现这里的美好')
+            utils.showModal('分享二维码已保存到系统相册', '快去分享吧')         
           },
           fail: err => { console.log(err) }
         })
